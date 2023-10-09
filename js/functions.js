@@ -20,6 +20,7 @@ function isPalyndrome(string) {
 }
 
 // работет некорректно
+/*
 function toNumber(string) {
   let result = [];
   let resultSrting = '';
@@ -33,3 +34,4 @@ function toNumber(string) {
 
   return resultSrting;
 }
+*/
