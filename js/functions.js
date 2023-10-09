@@ -9,7 +9,7 @@ function isPalyndrome(string) {
   let start = 0;
   let end = prepWord.length - 1;
 
-  while (start < end / 2) {
+  while (start < end) {
     if (prepWord[start] !== prepWord[end]) {
       return false;
     }
