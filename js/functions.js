@@ -9,7 +9,7 @@ function isPalyndrome(string) {
   let start = 0;
   let end = prepWord.length - 1;
 
-  while (start < end) {
+  while (start < end / 2) {
     if (prepWord[start] !== prepWord[end]) {
       return false;
     }
@@ -18,6 +18,7 @@ function isPalyndrome(string) {
   }
   return true;
 }
+isPalyndrome('топот');
 
 // работет некорректно
 /*
