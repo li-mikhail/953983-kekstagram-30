@@ -18,21 +18,21 @@ function isPalyndrome(string) {
   }
   return true;
 }
-isPalyndrome('топот');
 
-// работет некорректно
-/*
 function toNumber(string) {
-  let result = [];
+  if (typeof string !== 'string') {
+    string = string.toString();
+  }
+
   let resultSrting = '';
   for (let i = 0; i <= string.length - 1; i++) {
     const symbol = parseInt(string[i]);
 
-    if(!Number.isNaN(symbol)) {
-      result[i] = symbol.toString();
+    if(!Number.isNaN(symbol) && symbol !== ' ') {
+      resultSrting += symbol.toString();
     }
   }
-
-  return resultSrting;
+  return resultSrting ? resultSrting : NaN;
 }
-*/
+
+//console.log(toNumber(22));
