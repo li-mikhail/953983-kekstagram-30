@@ -25,7 +25,7 @@ function toNumber(string) {
 
   let resultSrting = '';
   for (let i = 0; i <= string.length - 1; i++) {
-    const symbol = parseInt(string[i]);
+    const symbol = parseInt(string[i], 10);
 
     if(!Number.isNaN(symbol) && symbol !== ' ') {
       resultSrting += symbol.toString();
