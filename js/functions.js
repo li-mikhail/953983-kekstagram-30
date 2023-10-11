@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 function checkLength(string, numberOfSymbols) {
-  const result = string.length <= numberOfSymbols;
-  return result;
+  return string.length <= numberOfSymbols;
 }
 
 function isPalyndrome(string) {
