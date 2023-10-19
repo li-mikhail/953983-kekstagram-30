@@ -84,6 +84,5 @@ const createDescription = () => ({
 });
 
 const createPhotos = () => Array.from({length: AMOUNT_OF_DESCRIPTIONS}, createDescription);
-createPhotos();
 
 export {createPhotos};
