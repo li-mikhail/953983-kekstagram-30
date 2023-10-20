@@ -7,7 +7,7 @@ const MAX_LIKES = 200;
 const MIN_COMMENTS = 0;
 const MAX_COMMENTS = 30;
 
-const AMOUNT_OF_DESCRIPTIONS = 25;
+// const AMOUNT_OF_DESCRIPTIONS = 25;
 
 const COMMENTS_TEXT = [
   'Всё отлично!',
@@ -71,7 +71,8 @@ const generatePhotoURL = createID ();
 const createComment = () => ({
   commentID: generateCommentID(),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_FILE_NUMBER)}.svg`,
-  message: randomArrayElement(COMMENTS_TEXT),
+  // message: randomArrayElement(COMMENTS_TEXT),
+  message: Array.from({ length: getRandomInteger(1, 2) }, () => randomArrayElement(COMMENTS_TEXT)).join(' '),
   userName: randomArrayElement(NAMES),
 });
 
@@ -83,6 +84,6 @@ const createDescription = () => ({
   comments: Array.from({length: getRandomInteger(MIN_COMMENTS, MAX_COMMENTS)}, createComment),
 });
 
-const createPhotos = () => Array.from({length: AMOUNT_OF_DESCRIPTIONS}, createDescription);
+const createPhotos = (count) => Array.from({length: count}, createDescription);
 
 export {createPhotos};
