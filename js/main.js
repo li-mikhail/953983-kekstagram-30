@@ -1,5 +1,8 @@
-//import './data.js';
 import {createPhotos} from './data.js';
-createPhotos();
+import {renderGallery} from './gallery.js';
 
-//console.log(createPhotos());
+const photos = createPhotos(25);
+renderGallery(photos);
+
+// console.log(createPhotos(25));
+// import './bigPicture.js';
