@@ -1,4 +1,4 @@
-/*function countDuration (hoursStart, minStart, hoursFinish, minFinish) {
+function countDuration (hoursStart, minStart, hoursFinish, minFinish) {
   return (hoursFinish * 60 + minFinish) - (hoursStart * 60 + minStart);
 }
 
