@@ -1,5 +1,7 @@
-//import './data.js';
 import {createPhotos} from './data.js';
-createPhotos();
+import {renderThumbnails} from './thumbnail.js';
 
-//console.log(createPhotos());
+const photos = createPhotos(25);
+renderThumbnails(photos);
+
+// console.log(createPhotos(25));
