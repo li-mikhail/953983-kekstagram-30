@@ -1,7 +1,8 @@
 import {createPhotos} from './data.js';
-import {renderThumbnails} from './thumbnail.js';
+import {renderGallery} from './gallery.js';
 
 const photos = createPhotos(25);
-renderThumbnails(photos);
+renderGallery(photos);
 
 // console.log(createPhotos(25));
+// import './bigPicture.js';

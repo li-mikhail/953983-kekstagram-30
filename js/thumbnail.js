@@ -3,20 +3,19 @@ const thumbnailTemplate = document
   .content
   .querySelector('.picture');
 
-const container = document.querySelector('.pictures');
-
-const createThumbnail = ({url, description, comments, likes}) => {
+const createThumbnail = ({url, description, comments, likes, id}) => {
   const thumbnail = thumbnailTemplate.cloneNode(true);
 
   thumbnail.querySelector('.picture__img').src = url;
   thumbnail.querySelector('.picture__img').alt = description;
   thumbnail.querySelector('.picture__comments').textContent = comments.length;
   thumbnail.querySelector('.picture__likes').textContent = likes;
+  thumbnail.dataset.thumbnailId = id; //creates attribute data-thumbnail-id="1" in DOM
 
   return thumbnail;
 };
 
-const renderThumbnails = (pictures) => {
+const renderThumbnails = (pictures, container) => {
   const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
     const thumbnail = createThumbnail(picture);
