@@ -5,4 +5,4 @@ const photos = createPhotos(25);
 renderGallery(photos);
 
 // console.log(createPhotos(25));
-// import './bigPicture.js';
+import './validation.js';
