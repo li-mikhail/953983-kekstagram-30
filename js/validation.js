@@ -6,7 +6,6 @@ imageUploadForm.action = 'https://30.javascript.pages.academy/kekstagram';
 imageUploadForm.type = 'multipart/form-data';
 
 const editingForm = document.querySelector('.img-upload__overlay');
-//const uploadNewPhotoButton = imageUploadForm.querySelector('.img-upload__label');
 const bodyElement = document.querySelector('body');
 const closeEditingFormButton = imageUploadForm.querySelector('.img-upload__cancel');
 const imageUploadInput = document.querySelector('.img-upload__input');
@@ -14,7 +13,7 @@ const hashTagfield = imageUploadForm.querySelector('.text__hashtags');
 const commentfield = imageUploadForm.querySelector('.text__description');
 
 const pristine = new Pristine(imageUploadForm, {
-  classto: 'img-upload__field-wrapper',
+  classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper', // почему можно не указывать errorTextTag?
   errorTextClass: 'img-upload__field-wrapper--error',
 }, true);
@@ -34,7 +33,7 @@ const hideEditingForm = () => {
   bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   pristine.reset(); // как это работает? Удаляет слушатель?
-  editingForm.reset(); // как это работает? Удаляет слушатель?
+  imageUploadForm.reset(); // как это работает? Удаляет слушатель?
   imageUploadInput.value = ''; // в разметке нет аттрибута value, какой смысл в этом действии? Это действие вообще нужно, если есть предыдущая строка?
 };
 
@@ -72,12 +71,12 @@ const normalizeTags = (string) => string
   .split(' ')
   .filter((tag) => Boolean(tag.length)); //почему строки пустые -> '', а не с пробелом внутри -> ' '?
 
-const validateHashTagsPattern = (value) => {
+const validateHashTagsUniqueness = (value) => {
   const lowerCaseTags = normalizeTags(value).map((tag) => tag.toLowerCase());
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
-const validateHashTagsUniqueness = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
+const validateHashTagsPattern = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
 
 const validateHashTagsCount = (value) => normalizeTags(value).length <= MAX_HASHTAG_COUNT;
 
