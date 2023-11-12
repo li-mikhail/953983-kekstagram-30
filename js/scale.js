@@ -12,7 +12,6 @@ const imageElement = modalForm.querySelector('.img-upload__preview img');
 const scaleImage = (value) => {
   imageElement.style.transform = `scale(${value / 100})`;
   scaleInputElement.value = `${value}%`;
-  console.log(imageElement.style);
 };
 
 const onSmallButtonClick = () => {
