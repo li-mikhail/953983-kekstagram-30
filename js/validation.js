@@ -1,4 +1,11 @@
-import { isEscapeKey } from './util';
+import { isEscapeKey } from './util.js';
+import {
+  init as initEffect,
+  reset as resetEffect }
+  from './effects.js';
+
+import { resetScale } from './scale.js';
+
 const imageUploadForm = document.querySelector('.img-upload__form');
 
 imageUploadForm.method = 'POST';
@@ -14,7 +21,7 @@ const commentfield = imageUploadForm.querySelector('.text__description');
 
 const pristine = new Pristine(imageUploadForm, {
   classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper', // почему можно не указывать errorTextTag?
+  errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
 }, true);
 
@@ -32,22 +39,24 @@ const hideEditingForm = () => {
   editingForm.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  pristine.reset(); // как это работает? Удаляет слушатель?
-  imageUploadForm.reset(); // как это работает? Удаляет слушатель?
-  imageUploadInput.value = ''; // в разметке нет аттрибута value, какой смысл в этом действии? Это действие вообще нужно, если есть предыдущая строка?
+  resetScale();
+  pristine.reset();
+  imageUploadForm.reset();
+  imageUploadInput.value = '';
+  resetEffect();
 };
 
 const isTextFieldOnFocus = () =>
   document.activeElement === hashTagfield || document.activeElement === commentfield;
 
-function onDocumentKeydown (evt) { // почему нужно объявлять деклоративную функцию?
+function onDocumentKeydown (evt) {
   if(isEscapeKey(evt) && !isTextFieldOnFocus()) {
     evt.preventDefault();
     hideEditingForm();
   }
 }
 
-const onClosePictureFormButtonClick = () => { // зачем нужна отдельная функция?
+const onClosePictureFormButtonClick = () => {
   hideEditingForm();
 };
 
@@ -69,7 +78,7 @@ const ERROR_TEXT_COMMENT = {
 const normalizeTags = (string) => string
   .trim(' ')
   .split(' ')
-  .filter((tag) => Boolean(tag.length)); //почему строки пустые -> '', а не с пробелом внутри -> ' '?
+  .filter((tag) => Boolean(tag.length));
 
 const validateHashTagsUniqueness = (value) => {
   const lowerCaseTags = normalizeTags(value).map((tag) => tag.toLowerCase());
@@ -112,11 +121,15 @@ pristine.addValidator(
   ERROR_TEXT_COMMENT.INVALID_COUNT
 );
 
-imageUploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+const onFormSubmit = () => {
+  imageUploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    pristine.validate();
+  });
+};
+
 
 imageUploadInput.addEventListener('change', onFileInputChange);
 closeEditingFormButton.addEventListener('click', onClosePictureFormButtonClick);
-
+imageUploadForm.addEventListener('click', onFormSubmit);
+initEffect();
