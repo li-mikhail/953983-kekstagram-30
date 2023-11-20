@@ -5,6 +5,8 @@ import {
   from './effects.js';
 
 import { resetScale } from './scale.js';
+import { sendPictures } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './message.js';
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 
@@ -18,6 +20,17 @@ const closeEditingFormButton = imageUploadForm.querySelector('.img-upload__cance
 const imageUploadInput = document.querySelector('.img-upload__input');
 const hashTagfield = imageUploadForm.querySelector('.text__hashtags');
 const commentfield = imageUploadForm.querySelector('.text__description');
+const submitButton = imageUploadForm.querySelector('.img-upload__submit');
+
+const SubmitButtonCaption = {
+  SUBMITTING: 'Отправляю',
+  IDLE: 'Опубликовать',
+};
+
+const toggleSubmitButton = (isDisabled) => {
+  submitButton.disabled = isDisabled;
+  submitButton.textContent = isDisabled ? SubmitButtonCaption.SUBMITTING : SubmitButtonCaption.IDLE;
+};
 
 const pristine = new Pristine(imageUploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -50,7 +63,8 @@ const isTextFieldOnFocus = () =>
   document.activeElement === hashTagfield || document.activeElement === commentfield;
 
 function onDocumentKeydown (evt) {
-  if(isEscapeKey(evt) && !isTextFieldOnFocus()) {
+  const isErrorMessageExits = Boolean(document.querySelector('.error'));
+  if(isEscapeKey(evt) && !isTextFieldOnFocus() && !isErrorMessageExits) {
     evt.preventDefault();
     hideEditingForm();
   }
@@ -121,15 +135,25 @@ pristine.addValidator(
   ERROR_TEXT_COMMENT.INVALID_COUNT
 );
 
-const onFormSubmit = () => {
-  imageUploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    pristine.validate();
-  });
-};
+const onFormSubmit = async (evt) => {
+  evt.preventDefault();
+  if (! pristine.validate()) {
+    return;
+  }
 
+  try {
+    toggleSubmitButton(true);
+    await sendPictures(new FormData(evt.target)); //почему передаем параметром evt.target?
+    hideEditingForm();
+    showSuccessMessage();
+  } catch {
+    showErrorMessage();
+  } finally {
+    toggleSubmitButton(false);
+  }
+};
 
 imageUploadInput.addEventListener('change', onFileInputChange);
 closeEditingFormButton.addEventListener('click', onClosePictureFormButtonClick);
-imageUploadForm.addEventListener('click', onFormSubmit);
+imageUploadForm.addEventListener('submit', onFormSubmit);
 initEffect();

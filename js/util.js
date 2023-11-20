@@ -1,15 +1,16 @@
-//  Random integer from range
-const getRandomInteger = (min, max) => {
-  const lower = Math.ceil(Math.min(min, max));
-  const upper = Math.floor(Math.max(min, max));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
+const REMOVE_MESSAGE_TIMEOUT = 5000;
+const errorMessageTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 
-// Random element from array
-const randomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
+const showErrorMessage = () => {
+  const errorMessage = errorMessageTemplate.cloneNode(true);
+  document.body.append(errorMessage);
+
+  setTimeout(() => {
+    errorMessage.remove();
+  }, REMOVE_MESSAGE_TIMEOUT);
+};
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {randomArrayElement, getRandomInteger, isEscapeKey};
+export { isEscapeKey, showErrorMessage };
 
