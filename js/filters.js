@@ -1,4 +1,5 @@
 import { renderGallery } from './gallery';
+import { debounce } from './util';
 
 const filterElement = document.querySelector('.img-filters');
 const MAX_RANDOM_FILTER = 10;
@@ -48,18 +49,20 @@ const repaint = (event, filter, data) => {
   event.target.classList.add('img-filters__button--active');
 };
 
+const debouncedRepaint = debounce(repaint);
+
 const initFilter = (data) => {
   filterElement.classList.remove('img-filters--inactive');
   defaultBtn.addEventListener('click', (event) => {
-    repaint(event, filterEnum.DEFAULT, data);
+    debouncedRepaint(event, filterEnum.DEFAULT, data);
   });
 
   randomBtn.addEventListener('click', (event) => {
-    repaint(event, filterEnum.RANDOM, data);
+    debouncedRepaint(event, filterEnum.RANDOM, data);
   });
 
   discussedBtn.addEventListener('click', (event) => {
-    repaint(event, filterEnum.DISCUSSED, data);
+    debouncedRepaint(event, filterEnum.DISCUSSED, data);
   });
 };
 
