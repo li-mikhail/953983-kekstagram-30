@@ -9,11 +9,6 @@ import { sendPictures } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
 
 const imageUploadForm = document.querySelector('.img-upload__form');
-
-imageUploadForm.method = 'POST';
-imageUploadForm.action = 'https://30.javascript.pages.academy/kekstagram';
-imageUploadForm.type = 'multipart/form-data';
-
 const editingForm = document.querySelector('.img-upload__overlay');
 const bodyElement = document.querySelector('body');
 const closeEditingFormButton = imageUploadForm.querySelector('.img-upload__cancel');
@@ -21,6 +16,14 @@ const imageUploadInput = document.querySelector('.img-upload__input');
 const hashTagfield = imageUploadForm.querySelector('.text__hashtags');
 const commentfield = imageUploadForm.querySelector('.text__description');
 const submitButton = imageUploadForm.querySelector('.img-upload__submit');
+const fileField = imageUploadForm.querySelector('.img-upload__input');
+const FILE_TYPES = ['jpeg', 'jpg', 'png'];
+const photoPreview = imageUploadForm.querySelector('.img-upload__preview img');
+const imageEffectsPreviews = imageUploadForm.querySelectorAll('.effects__preview');
+
+imageUploadForm.method = 'POST';
+imageUploadForm.action = 'https://30.javascript.pages.academy/kekstagram';
+imageUploadForm.type = 'multipart/form-data';
 
 const SubmitButtonCaption = {
   SUBMITTING: 'Отправляю',
@@ -44,7 +47,19 @@ const showEditingForm = () => {
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
+const isValidFile = (file) => {
+  const fileName = file.name.toLowerCase();
+  return FILE_TYPES.some((fileType) => fileName.endsWith(fileType));
+};
+
 const onFileInputChange = () => {
+  const file = fileField.files[0];
+  if(file && isValidFile(file)) {
+    photoPreview.src = URL.createObjectURL(file);
+    imageEffectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url('${photoPreview.src}')`;
+    });
+  }
   showEditingForm();
 };
 
