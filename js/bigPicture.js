@@ -17,11 +17,11 @@ const commentsloaderElement = bigPictureElement.querySelector('.comments-loader'
 
 const commentListElement = bigPictureElement.querySelector('.social__comments');
 
-const createComment = ({ avatar, message, userName }) => {
+const createComment = ({ avatar, message, name }) => {
   const newComment = commentElement.cloneNode(true);
 
   newComment.querySelector('.social__picture').src = avatar;
-  newComment.querySelector('.social__picture').alt = userName;
+  newComment.querySelector('.social__picture').alt = name;
   newComment.querySelector('.social__text').textContent = message;
 
   return newComment;
