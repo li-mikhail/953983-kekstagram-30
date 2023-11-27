@@ -1,7 +1,6 @@
 import { isEscapeKey } from './util.js';
 
-const successMessageElement = document.querySelector('#success').content.querySelector('.success'); //для чего тут content?
-
+const successMessageElement = document.querySelector('#success').content.querySelector('.success');
 const errorMessageElement = document.querySelector('#error').content.querySelector('.error');
 
 const hideMessage = () => {

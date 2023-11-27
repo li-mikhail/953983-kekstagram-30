@@ -8,6 +8,27 @@ import { resetScale } from './scale.js';
 import { sendPictures } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
 
+const MAX_HASHTAG_COUNT = 5;
+const MAX_COMMENT_COUNT = 140;
+const FILE_TYPES = ['jpeg', 'jpg', 'png'];
+
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
+const ERROR_TEXT_HASHTAG = {
+  INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
+  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
+  INVALID_PATTERN: 'Неправильный хэштег',
+};
+
+const ERROR_TEXT_COMMENT = {
+  INVALID_COUNT: `Максимум ${MAX_COMMENT_COUNT} комментариев`
+};
+
+const SubmitButtonCaption = {
+  SUBMITTING: 'Отправляю',
+  IDLE: 'Опубликовать',
+};
+
 const imageUploadForm = document.querySelector('.img-upload__form');
 const editingForm = document.querySelector('.img-upload__overlay');
 const bodyElement = document.querySelector('body');
@@ -17,18 +38,12 @@ const hashTagfield = imageUploadForm.querySelector('.text__hashtags');
 const commentfield = imageUploadForm.querySelector('.text__description');
 const submitButton = imageUploadForm.querySelector('.img-upload__submit');
 const fileField = imageUploadForm.querySelector('.img-upload__input');
-const FILE_TYPES = ['jpeg', 'jpg', 'png'];
 const photoPreview = imageUploadForm.querySelector('.img-upload__preview img');
 const imageEffectsPreviews = imageUploadForm.querySelectorAll('.effects__preview');
 
 imageUploadForm.method = 'POST';
 imageUploadForm.action = 'https://30.javascript.pages.academy/kekstagram';
 imageUploadForm.type = 'multipart/form-data';
-
-const SubmitButtonCaption = {
-  SUBMITTING: 'Отправляю',
-  IDLE: 'Опубликовать',
-};
 
 const toggleSubmitButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
@@ -87,21 +102,6 @@ function onDocumentKeydown (evt) {
 
 const onClosePictureFormButtonClick = () => {
   hideEditingForm();
-};
-
-// валидация ниже
-
-const MAX_HASHTAG_COUNT = 5;
-const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-const ERROR_TEXT_HASHTAG = {
-  INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
-  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
-  INVALID_PATTERN: 'Неправильный хэштег',
-};
-
-const MAX_COMMENT_COUNT = 140;
-const ERROR_TEXT_COMMENT = {
-  INVALID_COUNT: `Максимум ${MAX_COMMENT_COUNT} комментариев`
 };
 
 const normalizeTags = (string) => string
