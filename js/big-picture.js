@@ -1,8 +1,5 @@
-const bigPictureElement = document.querySelector('.big-picture');
-const bodyElement = document.querySelector('body');
-const closePictureButton = bigPictureElement.querySelector('.big-picture__cancel');
-
 const COMMENTS_COUNT_SHOWN = 5;
+
 let commentsCountShown = 0;
 let comments = [];
 
@@ -11,10 +8,12 @@ const commentElement = document
   .content
   .querySelector('.social__comment');
 
+const bigPictureElement = document.querySelector('.big-picture');
+const bodyElement = document.querySelector('body');
+const closePictureButton = bigPictureElement.querySelector('.big-picture__cancel');
 const commentCountElement = bigPictureElement.querySelector('.social__comment-shown-count');
 const commentTotalCountElement = bigPictureElement.querySelector('.social__comment-total-count');
 const commentsloaderElement = bigPictureElement.querySelector('.comments-loader');
-
 const commentListElement = bigPictureElement.querySelector('.social__comments');
 
 const createComment = ({ avatar, message, name }) => {

@@ -1,18 +1,19 @@
 import { renderGallery } from './gallery';
 import { debounce } from './util';
 
-const filterElement = document.querySelector('.img-filters');
 const MAX_RANDOM_FILTER = 10;
-const filterForm = document.querySelector('.img-filters__form');
-const defaultBtn = filterForm.querySelector('#filter-default');
-const randomBtn = filterForm.querySelector('#filter-random');
-const discussedBtn = filterForm.querySelector('#filter-discussed');
 
 const filterEnum = {
   DEFAULT: 'default',
   RANDOM: 'random',
   DISCUSSED: 'discussed',
 };
+
+const filterElement = document.querySelector('.img-filters');
+const filterForm = document.querySelector('.img-filters__form');
+const defaultBtn = filterForm.querySelector('#filter-default');
+const randomBtn = filterForm.querySelector('#filter-random');
+const discussedBtn = filterForm.querySelector('#filter-discussed');
 
 const getRandomIndex = (min, max) => Math.floor(Math.random() * (max - min));
 
