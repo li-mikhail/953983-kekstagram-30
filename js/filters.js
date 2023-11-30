@@ -1,5 +1,5 @@
-import { renderGallery } from './gallery';
-import { debounce } from './util';
+import { renderGallery } from './gallery.js';
+import { debounce } from './util.js';
 
 const MAX_RANDOM_FILTER = 10;
 
