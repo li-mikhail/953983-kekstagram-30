@@ -14,7 +14,7 @@ Course Link - https://htmlacademy.ru/profession/fullstack
 
 ---
 
-##### Functionality description:
+#### Functionality description:
 
 ##### 1. Uploading a new image to the site and filling in information about it
 - Selecting a file with the image for upload;
