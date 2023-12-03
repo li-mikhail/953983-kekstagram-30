@@ -1,51 +1,38 @@
-# Личный проект «Кекстаграм»
+# Project: Kekstagram
 
-* Студент: [Михаил Ли](https://up.htmlacademy.ru/javascript/30/user/953983).
-* Наставник: `Ольга Ветер`. 
+## Technologies
+![HTML5](https://img.shields.io/badge/-HTML5-e34f26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572b6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-f7df1e?logo=javaScript&logoColor=black)
+
+---
+#### **A project completed during the HTML Academy web development course**
+
+Project Preview Link - https://li-mikhail.github.io/953983-kekstagram-30/
+---
+Course Link - https://htmlacademy.ru/profession/fullstack
 
 ---
 
-_Не удаляйте и не изменяйте самовольно файлы и папки:_
-_`.editorconfig`, `.eslintrc`, `.gitattributes`, `.gitignore`, `package-lock.json`, `package.json`., `.github`_
+##### Functionality description:
 
----
+##### 1. Uploading a new image to the site and filling in information about it
+- Selecting a file with the image for upload;
+- Scaling the image;
+- Applying one of the pre-prepared effects;
+- Selecting the depth of the effect using a slider;
+- Adding a text comment and its validation;
+- Adding hashtags and their validation.
 
-[Как работать с Git на проекте](Contributing.md) | [Как работать над проектом](Workflow.md)
+##### 2. Sending data to the server.
+##### 3. Viewing uploaded images
+- All uploaded images from the server are displayed on the main page as thumbnails.
+- Full-screen view of a post containing the full-screen image with the number of likes and comments. Immediately after opening the image in full-screen mode, no more than 5 comments are displayed. Displaying additional comments occurs upon pressing a button.
+- If there is an error in loading data from the server, an error message pops up.
+- Exiting full-screen photo viewing mode can be done either by clicking the close icon in the upper right corner of the block or by pressing the Esc key.
 
-### Памятка
-
-#### 1. Зарегистрируйтесь на Гитхабе
-
-Если у вас ещё нет аккаунта на [github.com](https://github.com/join), скорее зарегистрируйтесь.
-
-#### 2. Создайте форк
-
-Откройте репозиторий и нажмите кнопку «Fork» в правом верхнем углу. Репозиторий из Академии будет скопирован в ваш аккаунт.
-
-<img width="769" alt="" src="https://user-images.githubusercontent.com/10909/35275222-1d624452-0050-11e8-8aca-06d2832724ce.png">
-
-Получится вот так:
-
-<img width="769" alt="" src="https://user-images.githubusercontent.com/10909/35275223-1d7cf9fa-0050-11e8-829b-98ac3c9a4f8b.png">
-
-#### 3. Клонируйте репозиторий на свой компьютер
-
-Будьте внимательны: нужно клонировать свой репозиторий (форк), а не репозиторий Академии. Также обратите внимание, что клонировать репозиторий нужно через SSH, а не через HTTPS. Нажмите зелёную кнопку в правой части экрана, чтобы скопировать SSH-адрес вашего репозитория:
-
-<img width="769" alt="" src="https://user-images.githubusercontent.com/10909/35275224-1d97a7dc-0050-11e8-89f9-41c9a7b2ae9c.png">
-
-Клонировать репозиторий можно так:
-
-```
-git clone SSH-адрес_вашего_форка
-```
-
-Команда клонирует репозиторий на ваш компьютер и подготовит всё необходимое для старта работы.
-
-#### 4. Начинайте обучение!
-
----
-
-<a href="https://htmlacademy.ru/intensive/javascript"><img align="left" width="50" height="50" alt="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/javascript/logo-for-github-2.png"></a>
-
-Репозиторий создан для обучения на интенсивном онлайн‑курсе «[JavaScript. Профессиональная разработка веб-интерфейсов](https://htmlacademy.ru/intensive/javascript)» от [HTML Academy](https://htmlacademy.ru).
+##### 4. Filtering images from other users
+- 'Default' - photos in their original order from the server;
+- 'Random' - 10 random, non-repeating photos;
+- 'Discussed' - photos sorted in descending order of the number of comments.
+- When switching filters, rendering images that fit the new filter should not occur more frequently than once every 500 ms (debounce)."
