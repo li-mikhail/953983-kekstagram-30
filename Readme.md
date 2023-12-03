@@ -9,6 +9,7 @@
 #### **A project completed during the HTML Academy web development course**
 
 Project Preview Link - https://li-mikhail.github.io/953983-kekstagram-30/
+
 Course Link - https://htmlacademy.ru/profession/fullstack
 
 ---
