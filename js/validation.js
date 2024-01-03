@@ -15,18 +15,18 @@ const FILE_TYPES = ['jpeg', 'jpg', 'png'];
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const ERROR_TEXT_HASHTAG = {
-  INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
-  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
-  INVALID_PATTERN: 'Неправильный хэштег',
+  INVALID_COUNT: `Maximum ${MAX_HASHTAG_COUNT} hashtags reached`,
+  NOT_UNIQUE: 'Hashtags must be unique',
+  INVALID_PATTERN: 'Invalid hashtag',
 };
 
 const ERROR_TEXT_COMMENT = {
-  INVALID_COUNT: `Максимум ${MAX_COMMENT_COUNT} комментариев`
+  INVALID_COUNT: `Maximum ${MAX_COMMENT_COUNT} amount of symbols reached`
 };
 
 const SubmitButtonCaption = {
-  SUBMITTING: 'Отправляю',
-  IDLE: 'Опубликовать',
+  SUBMITTING: 'Sending',
+  IDLE: 'Publish',
 };
 
 const imageUploadForm = document.querySelector('.img-upload__form');

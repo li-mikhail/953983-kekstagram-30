@@ -11,8 +11,8 @@ const httpMethod = {
 };
 
 const errorText = {
-  GET: 'Не удалось загрузить данные. Попробуйте еще раз.',
-  POST: 'Не удалось отправить данные формы',
+  GET: 'Failed to upload data. Please try again.',
+  POST: 'Unable to submit form data.',
 };
 
 const request = async (url, method = httpMethod.GET, body = null) => {
